@@ -1,0 +1,88 @@
+---
+import Layout from "../../Layout.astro";
+import { getPage, getAllSlugs } from "../../lib/data.js";
+
+export function getStaticPaths() {
+    return getAllSlugs().map((slug) => ({ params: { wiki: slug } }));
+}
+
+const page = getPage(Astro.params.wiki);
+---
+
+<Layout title={page?.title ?? "Page not found"} hasMath={page?.hasMath}>
+    {page ? (
+        <div class="layout">
+            <main class="content">
+                <article class="article">
+                    <h1>{page.title}</h1>
+                    <div set:html={page.html} />
+                </article>
+            </main>
+            <aside class="toc" aria-label="Table of contents">
+                {page.toc && <div set:html={page.toc} />}
+            </aside>
+        </div>
+    ) : (
+        <main>
+            <h1>Page not found</h1>
+        </main>
+    )}
+</Layout>
+
+<style>
+    .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 240px;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .content {
+        min-width: 0;
+    }
+
+    .toc {
+        position: sticky;
+        top: 5rem;
+        align-self: start;
+        overflow-y: auto;
+        max-height: calc(100vh - 6rem);
+        color: var(--muted);
+        font-size: 0.9rem;
+    }
+
+    .toc :global(ul) {
+        padding-left: 1.25rem;
+        list-style: none;
+    }
+
+    .toc :global(li) {
+        margin: 0.35rem 0;
+    }
+
+    .toc :global(.toc-level-3) {
+        padding-left: 1.3rem;
+    }
+    .toc :global(.toc-level-4) {
+        padding-left: 1.8rem;
+    }
+    .toc :global(.toc-level-5) {
+        padding-left: 2.3rem;
+    }
+
+    .toc :global(a) {
+        color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+        .layout {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .toc {
+            display: none;
+        }
+    }
+</style>

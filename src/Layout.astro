@@ -1,0 +1,105 @@
+---
+import "./lib/style.css";
+import { Check, Code, Moon, Sun } from "@lucide/astro";
+const { title, hasMath = false } = Astro.props;
+const KATEX_BASE = "https://cdn.jsdelivr.net/npm/katex@0.19.1/dist";
+---
+
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="color-scheme" content="light dark" />
+        <title>{title ?? 'wiki'}</title>
+        {hasMath && <link rel="stylesheet" href={`${KATEX_BASE}/katex.min.css`} />}
+        <script is:inline>
+            (() => {
+                const saved = localStorage.getItem("docblog-theme");
+                const theme =
+                    saved === "light" || saved === "dark"
+                        ? saved
+                        : matchMedia("(prefers-color-scheme: dark)").matches
+                          ? "dark"
+                          : "light";
+                document.documentElement.dataset.theme = theme;
+            })();
+        </script>
+    </head>
+    <body>
+        <nav class="navbar" aria-label="Main navigation">
+            <a class="nav-home" href="/">
+                Home
+            </a>
+            <button
+                class="theme-toggle icon-button"
+                type="button"
+                aria-label="Switch to dark theme"
+                title="Switch theme"
+            >
+                <Sun class="sun-icon" size={18} strokeWidth={1.8} aria-hidden="true" />
+                <Moon class="moon-icon" size={18} strokeWidth={1.8} aria-hidden="true" />
+            </button>
+        </nav>
+        <slot />
+
+        <template id="code-copy-icons">
+            <Code class="copy-icon" size={18} strokeWidth={1.8} aria-hidden="true" />
+            <Check class="check-icon" size={18} strokeWidth={1.8} aria-hidden="true" />
+        </template>
+
+        <script is:inline>
+            const setTheme = (theme) => {
+                document.documentElement.dataset.theme = theme;
+                localStorage.setItem("docblog-theme", theme);
+                document
+                    .querySelector(".theme-toggle")
+                    ?.setAttribute(
+                        "aria-label",
+                        theme === "dark" ? "Switch to light theme" : "Switch to dark theme",
+                    );
+            };
+
+            const syncThemeButton = () => {
+                const theme = document.documentElement.dataset.theme;
+                document
+                    .querySelector(".theme-toggle")
+                    ?.setAttribute(
+                        "aria-label",
+                        theme === "dark" ? "Switch to light theme" : "Switch to dark theme",
+                    );
+            };
+            syncThemeButton();
+            document.addEventListener("astro:page-load", syncThemeButton);
+            document.addEventListener("click", (event) => {
+                if (!event.target.closest(".theme-toggle")) return;
+                setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+            });
+
+            const copyIcons = document.querySelector("#code-copy-icons")?.content;
+            document.querySelectorAll("[data-copy-code]").forEach((button) => {
+                if (copyIcons) button.append(copyIcons.cloneNode(true));
+            });
+            document.addEventListener("click", async (event) => {
+                const button = event.target.closest("[data-copy-code]");
+                if (!button) return;
+                const code = button.closest(".code-block")?.querySelector("pre code");
+                if (!code) return;
+
+                try {
+                    await navigator.clipboard.writeText(code.textContent);
+                    button.classList.add("copied");
+                    button.setAttribute("aria-label", "Code copied");
+                    button.title = "Copied";
+                    window.setTimeout(() => {
+                        button.classList.remove("copied");
+                        button.setAttribute("aria-label", "Copy code");
+                        button.title = "Copy code";
+                    }, 390);
+                } catch {
+                    button.setAttribute("aria-label", "Unable to copy code");
+                    button.title = "Unable to copy";
+                }
+            });
+        </script>
+    </body>
+</html>
