@@ -4,13 +4,13 @@
 
 - https://github.com/love2d/love
 
-专注于2d的游戏引擎，小丑牌基于此，lua
+    专注于2d的游戏引擎，小丑牌基于此，lua
 
 - https://github.com/raysan5/raylib
 
-基于OpenGL/GLFW的c库
+    基于OpenGL/GLFW的c库
 
-https://zhuanlan.zhihu.com/p/458335134
+- https://zhuanlan.zhihu.com/p/458335134
 
 ## 常见图形API
 
