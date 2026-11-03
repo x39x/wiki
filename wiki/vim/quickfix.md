@@ -8,10 +8,28 @@ localfix 就是针对某个buffer的quickfix，只能在指定buffer打开，几
 - ccl : cclose
 - cn : cnext ]q
 - cp : cprev [q
-- cdo : 给每个quickfix结果执行
+- cdo
+
+    给每个quickfix结果执行
+
+    ```vim
+    "可以使用 | 连接多个命令，同 ex cmd "
+    :cdo s/foo/bar/g | update
+    :cdo s/foo/bar/gc
+    :cdo normal! >>
+    ```
+
+- cfd
+
+    给每个quickfix结果执行
+
+    ```vim
+    :cfdo %s/foo/bar/g
+    ```
+
 - caddfile/caddbuffer/caddexpr : 加载错误信息
 
-more see :h fuickfix
+more see :h quickfix
 
 ## make
 
