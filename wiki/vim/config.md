@@ -2,10 +2,22 @@
 
 ## 插件
 
-- https://github.com/stevearc/aerial.nvim
-- https://github.com/MagicDuck/grug-far.nvim
-- https://github.com/mfussenegger/nvim-lint
-- https://github.com/windwp/nvim-ts-autotag
+### symbols 导航
+
+- https://github.com/stevearc/aerial.nvim/
+
+### 搜索替换
+
+- https://github.com/MagicDuck/grug-far.nvim/
+- https://github.com/chrisgrieser/nvim-rip-substitute
+
+### task
+
+- https://github.com/stevearc/overseer.nvim/
+
+### lint
+
+- https://github.com/mfussenegger/nvim-lint/
 
 ## 加载顺序
 

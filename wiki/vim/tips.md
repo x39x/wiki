@@ -1,8 +1,6 @@
 # Tips
 
-[Cheatsheet](https://github.com/skywind3000/awesome-cheatsheets)
-
-[Cheatsheet](https://vim.rtorr.com/lang/zh_cn)
+https://github.com/skywind3000/awesome-cheatsheets/
 
 - `Ctrl w o` ：关闭其他所以窗口
 - `cc` 清空一行并在合适的缩进位置进入插入模式
@@ -11,7 +9,7 @@
 - 10% 移动到文件 10% 处
 - 在空白行使用 dip 命令可以删除所有临近的空白行，viw 可以选择连续空白
 - 缩进时使用 `>8j >} <ap >ap =i} ==`会方便很多
-- 插入模式下，当你发现一个单词写错了，应该多用 CTRL-W 这比 `<BackSpace>` 快
+- 插入模式下，支持 CTRL-W
 - c d x 命令会自动填充寄存器 "1 到 "9 , y 命令会自动填充 "0 寄存器
 - 用 v 命令选择文本时，可以用 o 掉头选择，有时很有用
 - 写文章时，可以写一段代码块，然后选中后执行 :!python 代码块就会被替换成结果
@@ -25,8 +23,6 @@
 
 - `:h channel`
 - `vim.async`
-
-可以被多个编辑器读取
 
 ## 执行外部命令
 
