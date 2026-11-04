@@ -201,3 +201,9 @@ end
 -- 1 2
 -- [3] 不存在，会停下
 ```
+
+## reference
+
+- https://github.com/rxi/lume
+
+    一组实用的lua函数

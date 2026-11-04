@@ -31,3 +31,8 @@ tags:
 
 - https://github.com/Cpp-Club/Cxx_HOPL4_zh
 - https://zhuanlan.zhihu.com/p/688090551
+
+## others
+
+- https://github.com/TecharoHQ/anubis
+- https://github.com/GuoYaxiang/craftinginterpreters_zh
