@@ -2,22 +2,13 @@
 
 ## 插件
 
-### symbols 导航
-
-- https://github.com/stevearc/aerial.nvim/
-
-### 搜索替换
-
-- https://github.com/MagicDuck/grug-far.nvim/
-- https://github.com/chrisgrieser/nvim-rip-substitute
-
-### task
-
-- https://github.com/stevearc/overseer.nvim/
-
-### lint
-
-- https://github.com/mfussenegger/nvim-lint/
+| plugin                                              | intro        |
+| --------------------------------------------------- | ------------ |
+| https://github.com/stevearc/aerial.nvim/            | symbols 导航 |
+| https://github.com/MagicDuck/grug-far.nvim/         | 搜索替换     |
+| https://github.com/chrisgrieser/nvim-rip-substitute | 搜索替换     |
+| https://github.com/mfussenegger/nvim-lint/          | lint         |
+| https://github.com/rest-nvim/rest.nvim              | http         |
 
 ## 加载顺序
 
