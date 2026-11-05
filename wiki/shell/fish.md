@@ -20,3 +20,24 @@ psub 是 fish 内置命令（函数），行为是：
 1. 读取 stdin
 2. 写入一个 临时文件
 3. 输出这个临时文件的路径
+
+## tips
+
+fish会把PATH处理成列表，可用 `printf '%s\n' $PATH` 查看
+
+- type
+
+    locate a command and describe its type
+
+    ```bash
+    type export
+    type -a bash
+    ```
+
+- functions
+
+    查看函数
+
+    ```bash
+    functions ls
+    ```
